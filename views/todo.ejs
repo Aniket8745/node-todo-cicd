@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Todo List App</title>
     <style>
         /* Basic Page Setup */
@@ -15,12 +16,12 @@
 
         /* Header */
         h1 {
-            background-color: #ff6f61;
+            background-color: #3498db; /* Deep blue */
             color: white;
             margin: 0;
             padding: 20px;
             text-align: center;
-            border-bottom: 3px solid #ff3b30;
+            border-bottom: 3px solid #2980b9; /* Slightly darker blue for border */
         }
 
         /* Todo List */
@@ -33,16 +34,17 @@
 
         .todolist li {
             background: #ffffff;
-            border: 1px solid #ccc;
+            border: 1px solid #ddd;
             border-radius: 8px;
             margin-bottom: 15px;
             padding: 20px;
             position: relative;
-            transition: box-shadow 0.3s ease;
+            transition: box-shadow 0.3s ease, background-color 0.3s ease;
         }
 
         .todolist li:hover {
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background-color: #f7f9fa;
         }
 
         /* Action Buttons */
@@ -51,15 +53,16 @@
             top: 10px;
             cursor: pointer;
             font-size: 20px;
+            transition: transform 0.3s ease;
         }
 
         .delete-btn {
-            color: #e74c3c;
+            color: #e74c3c; /* Red */
             right: 10px;
         }
 
         .edit-btn {
-            color: #f39c12;
+            color: #f39c12; /* Orange */
             right: 45px;
         }
 
@@ -70,7 +73,7 @@
         /* Form */
         .todo-form {
             background: #ffffff;
-            border: 1px solid #ccc;
+            border: 1px solid #ddd;
             border-radius: 8px;
             padding: 25px;
             max-width: 600px;
@@ -80,7 +83,7 @@
 
         .todo-form label {
             display: block;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             font-weight: bold;
             color: #333;
         }
@@ -88,9 +91,15 @@
         .todo-form input[type="text"] {
             width: 100%;
             padding: 12px;
-            margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 8px;
+            transition: border-color 0.3s ease;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .todo-form input[type="text"]:focus {
+            border-color: #3498db; /* Blue border on focus */
         }
 
         .todo-form input[type="submit"] {
@@ -101,6 +110,7 @@
             padding: 12px 25px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            font-size: 16px;
         }
 
         .todo-form input[type="submit"]:hover {
@@ -113,7 +123,7 @@
 
     <!-- Todo List -->
     <ul class="todolist">
-        <% todolist.forEach(function(todo, index) { %>
+        <% todolist.forEach((todo, index) => { %>
         <li>
             <a href="/todo/delete/<%= index %>" class="action-btn delete-btn">✘</a>
             <a href="/todo/<%= index %>" class="action-btn edit-btn">✎</a>
@@ -124,8 +134,8 @@
 
     <!-- Add Todo Form -->
     <form action="/todo/add/" method="post" class="todo-form">
-        <label for="newtodo">What should I do?</label>
-        <input type="text" name="newtodo" id="newtodo" autofocus placeholder="Enter a new task" />
+        <label for="newtodo">New Task:</label>
+        <input type="text" name="newtodo" id="newtodo" autofocus placeholder="Enter a new task..." />
         <input type="submit" value="Add" />
     </form>
 </body>
